@@ -3011,7 +3011,7 @@ static void llm_load_sparse_model_tensors(
         // Let it be the rest of VRAM
         vram_capacity = ggml_cuda_get_free_memory(main_gpu);
     } else {
-        vram_capacity = std::min(vram_budget_bytes, (long long) ggml_cuda_get_free_memory(main_gpu));
+        vram_capacity = vram_budget_bytes;
     }
 #endif
 
