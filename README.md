@@ -103,6 +103,28 @@ cmake -S . -B build
 cmake --build build --config Release
 ```
 
+#### Using Docker(combine WSL2)
+```
+version: '3.8'
+services:
+  powerinfer:
+    build: .
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: 1
+            capabilities: [gpu]
+    volumes:
+      - ./data:/app/data
+    command: ["/app/build/bin/main", "-m", "/app/models/model.gguf", "-n", "128", "-t", "8", "-p", "Once upon a time"]
+
+```
+
 ## Model Weights
 
 PowerInfer models are stored in a special format called *PowerInfer GGUF* based on GGUF format, consisting of both LLM weights and predictor weights. 
