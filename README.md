@@ -103,7 +103,7 @@ cmake -S . -B build
 cmake --build build --config Release
 ```
 
-#### Using Docker(combine WSL2)
+#### Using Docker(WSL2)
 ```
 version: '3.8'
 services:
